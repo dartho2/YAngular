@@ -56,13 +56,13 @@ router.get('/events', (req, res ) => {
      "_id": "1",
      "name": "dupa",
      "description": "dupaa",
-     "date": "13.08.2018"
+     "date": "2010-10-29 05:40:23"
  },
  {
     "_id": "2",
     "name": "dupa2",
     "description": "dupaa2",
-    "date": "13.08.2018"
+    "date": "2010-10-29 05:40:23"
 }
 ]
 res.json(events)
@@ -73,13 +73,13 @@ router.get('/special', (req, res ) => {
      "_id": "1",
      "name": "dupa",
      "description": "dupaa",
-     "date": "13.08.2018"
+     "date": "2010-10-29 05:40:23"
  },
  {
     "_id": "2",
     "name": "dupa2",
     "description": "dupaa2",
-    "date": "13.08.2018"
+    "date": "2010-10-29 05:40:23"
 }
 ]
 res.json(events)
