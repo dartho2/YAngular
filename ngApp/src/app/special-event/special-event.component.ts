@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./special-event.component.css']
 })
 export class SpecialEventComponent implements OnInit {
+  
+  userID: number;
 
   specialEvents = []
   constructor(

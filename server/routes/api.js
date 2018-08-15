@@ -28,7 +28,19 @@ function verifyToken(req, res, next) {
     req.useId = payload.subject
     next()
 }
+router.get('/users', (req,res) => { 
+    User.find({}, (err,users) => {
+        res.json(users)
+    })
+})
+router.get('/users/:usersId', (req,res) => {
+   // User.findById(req.params.usersId, (err,users) => {
+   User.find({email: req.params.usersId}, (err,users) =>{
+    res.json(users)
+   
 
+    })
+})
 router.get('/', (req, res) => {
     res.send('From API')
 })
@@ -38,9 +50,9 @@ router.post('/register', (req, res) =>{
     let user = new User(userData)
     user.save((err, regiseredUser) => {
         if (err) {
-            console.log(error)
+            console.log(err)
         } else {
-            let payload = { subject: regiseredUser._id }
+            let payload = { subject: regiseredUser._id}
             let token = jwt.sign( payload, 'secretKey')
             res.status(200).send({token})
         }
@@ -70,7 +82,7 @@ router.post('/login', (req, res) => {
     })
 
 })
-router.get('/events', (req, res ) => {
+router.get('/events', verifyToken, (req, res ) => {
     let events = [
  {
      "_id": "1",
@@ -87,21 +99,26 @@ router.get('/events', (req, res ) => {
 ]
 res.json(events)
 })
-router.get('/special', verifyToken, (req, res ) => {
-    let events = [
- {
-     "_id": "1",
-     "name": "dupa",
-     "description": "dupaa",
-     "date": "2010-10-29 05:40:23"
- },
- {
-    "_id": "2",
-    "name": "dupa2",
-    "description": "dupaa2",
-    "date": "2010-10-29 05:40:23"
-}
-]
-res.json(events)
+router.get('/special', verifyToken, (req,res) => { 
+    User.find({}, (err,users) => {
+        res.json(users)
+    })
 })
+// router.get('/special', verifyToken, (req, res ) => {
+//     let events = [
+//  {
+//      "_id": "1",
+//      "name": "dupa",
+//      "description": "dupaa",
+//      "date": "2010-10-29 05:40:23"
+//  },
+//  {
+//     "_id": "2",
+//     "name": "dupa2",
+//     "description": "dupaa2",
+//     "date": "2010-10-29 05:40:23"
+// }
+// ]
+// res.json(events)
+// })
 module.exports = router

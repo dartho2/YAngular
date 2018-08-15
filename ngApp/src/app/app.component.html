@@ -32,6 +32,10 @@
 </nav>
 
 <div class="container">
-
+<input type="text" (keyup)="onNameKeyUp($event)">
+<button (click)="getProfile()">Get Profile</button>
+<div *ngIf="found">
+  <span>" {{email}} " have a password " {{password}} "</span>
+</div>
 <router-outlet></router-outlet>
   </div>
